@@ -42,8 +42,18 @@ function chopper_logic() {
   chopper.frame ++;
   if (chopper.frame == CHOPPER_FRAMECOUNT) chopper.frame = 0;
 
+  var touching_left = false;
+  var touching_right = false;
+  
+  // chopper overload mouse/touch as movement
+  if (pressing.mouse) {
+    if (mouse_pos.x < chopper.x) touching_left = true;
+    else touching_right = true;
+  }
+  
+  
   // move left
-  if (pressing.left) {
+  if (pressing.left || touching_left) {
 
     // accelerate left  
     chopper.dx -= CHOPPER_DX_ACCEL;
@@ -53,7 +63,7 @@ function chopper_logic() {
     chopper.tilt -= CHOPPER_TILT_ACCEL;
     if (chopper.tilt < -CHOPPER_TILT_MAX) chopper.tilt = -CHOPPER_TILT_MAX;
   }
-  else if (pressing.right) {
+  else if (pressing.right || touching_right) {
   
     // accelerate right
     chopper.dx += CHOPPER_DX_ACCEL;

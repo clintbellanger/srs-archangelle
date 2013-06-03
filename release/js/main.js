@@ -47,8 +47,10 @@ function init() {
     window.addEventListener('keydown', handleKeyDown, true);
     window.addEventListener('keyup', handleKeyUp, true);
 	window.addEventListener('mousedown', handleMouseDown, true);
+    window.addEventListener('mousemove', handleMouseMove, true);
 	window.addEventListener('mouseup', handleMouseUp, true);
 	window.addEventListener('touchstart', handleTouchStart, true);
+    window.addEventListener('touchmove', handleTouchMove, true);
 	window.addEventListener('touchend', handleTouchEnd, true);
 	window.addEventListener('resize', resizeCanvas, false);
 	window.addEventListener('orientationchange', resizeCanvas, false);

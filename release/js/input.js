@@ -97,9 +97,13 @@ function handleMouseDown(evt) {
   mouse_pos = clickCoord(evt);
 }
 
+function handleMouseMove(evt) {
+  mouse_pos = clickCoord(evt);
+}
+
 function handleMouseUp(evt) {
   pressing.mouse = false;
-  input_lock.mouse = false;
+  input_lock.mouse = false;  
 }
 
 function clickCoord(evt) {
@@ -130,6 +134,10 @@ function handleTouchStart(evt) {
   evt.preventDefault();
   pressing.mouse = true;
   mouse_pos = touchCoord(evt);
+}
+
+function handleTouchMove(evt) {
+  mouse_Pos = touchCoord(evt);
 }
 
 function handleTouchEnd(evt) {
