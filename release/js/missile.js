@@ -33,7 +33,7 @@ function missile_logic() {
     if (missile.list[i].frame == MISSILE_FRAMECOUNT * MISSILE_FRAMELENGTH) missile.list[i].frame = 0;
     
     // leave screen
-    if (missile.list[i].y < MISSILE_HEIGHT) {
+    if (missile.list[i].y < -MISSILE_HEIGHT) {
       missile_remove(i);
     }
   }
