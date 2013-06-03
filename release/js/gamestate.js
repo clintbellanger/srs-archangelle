@@ -23,9 +23,9 @@ function gamestate_render() {
   ctx.fillRect(0,0,320*SCALE,240*SCALE);
 
   switch(gamestate) {
-    case STATE_PLAY:
-	  chopper_render();
+    case STATE_PLAY:	  
       missile_render();
+      chopper_render();
 	  break;
   }
 }
