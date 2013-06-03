@@ -12,6 +12,7 @@ var CHOPPER_CENTER_TILT = 2;
 var CHOPPER_STARTING_X = 160.0;
 var CHOPPER_STARTING_Y = 216.0;
 var CHOPPER_FRAMECOUNT = 3;
+var CHOPPER_FRAMES_PER_SHOT = 12;
 
 var chopper = new Object();
 
@@ -24,6 +25,7 @@ chopper.y = CHOPPER_STARTING_Y;
 chopper.dx = 0.0;
 chopper.frame = 0;
 chopper.tilt = 0.0;
+chopper.shooting = 0;
 
 function chopper_init() {
   chopper.img.src = "images/archangelle.png";
@@ -82,11 +84,22 @@ function chopper_logic() {
   if (chopper.x < CHOPPER_HALF) chopper.x = CHOPPER_HALF;
   if (chopper.x > VIEW_WIDTH - CHOPPER_HALF) chopper.x = VIEW_WIDTH - CHOPPER_HALF;
   
+  // additional logic
+  chopper_logic_shoot();
+}
+
+function chopper_logic_shoot() {
+  chopper.shooting++;
+  if (chopper.shooting == CHOPPER_FRAMES_PER_SHOT) {
+    chopper.shooting = 0;
+    missile_add(Math.round(chopper.x), Math.round(chopper.y));
+  }
+
 }
 
 function chopper_render() {
   if (!chopper.img_loaded) return;
-
+  
   ctx.drawImage(
     chopper.img,
     chopper.frame * CHOPPER_SIZE,

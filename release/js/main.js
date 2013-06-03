@@ -57,6 +57,7 @@ function init() {
   // initialize all game units
   bitfont_init();
   chopper_init();
+  missile_init();
 
   init_complete = true;
 }

@@ -12,6 +12,7 @@ function gamestate_logic() {
   switch(gamestate) {
     case STATE_PLAY:
 	  chopper_logic();
+      missile_logic();
 	  break;
   } 
 }
@@ -24,6 +25,7 @@ function gamestate_render() {
   switch(gamestate) {
     case STATE_PLAY:
 	  chopper_render();
+      missile_render();
 	  break;
   }
 }
