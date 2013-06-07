@@ -16,6 +16,8 @@ missile.img_loaded = false;
 
 missile.list = new Array();
 
+missile.total = 0;
+
 function missile_init() {
   missile.img.src = "images/dild_missile.png";
   missile.img.onload = function() {missile_onload();};
@@ -48,11 +50,14 @@ function missile_render() {
   for (var i=missile.list.length-1; i>=0; i--) {
     missile_render_single(i);
   }
+  
+  bitfont_render("Dilds fired: " + missile.total, 2, 2, JUSTIFY_LEFT);
 }
 
 function missile_add(start_x, start_y, speed_x, speed_y) {
   var new_missile = {x:start_x, y:start_y, frame:0, dx:speed_x, dy:speed_y};
   missile.list.push(new_missile);
+  missile.total++;
 }
 
 function missile_remove(missile_id) {
