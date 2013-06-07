@@ -60,6 +60,7 @@ function init() {
   bitfont_init();
   chopper_init();
   missile_init();
+  starfield_init();
 
   init_complete = true;
 }

@@ -5,7 +5,7 @@ var MISSILE_WIDTH = 8;
 var MISSILE_HEIGHT = 12;
 var MISSILE_WIDTH_HALF = 4;
 var MISSILE_HEIGHT_HALF = 6;
-var MISSILE_SPEED = 4;
+// var MISSILE_SPEED = 4;
 var MISSILE_FRAMECOUNT = 4;
 var MISSILE_FRAMELENGTH = 3;
 
@@ -28,7 +28,12 @@ function missile_onload() {
 function missile_logic() {
 
   for (var i=missile.list.length-1; i>=0; i--) {
-    missile.list[i].y -= MISSILE_SPEED;
+
+    // move  
+	missile.list[i].x += missile.list[i].dx;
+    missile.list[i].y += missile.list[i].dy;
+	
+	// animate
     missile.list[i].frame++;
     if (missile.list[i].frame == MISSILE_FRAMECOUNT * MISSILE_FRAMELENGTH) missile.list[i].frame = 0;
     
@@ -45,8 +50,8 @@ function missile_render() {
   }
 }
 
-function missile_add(start_x, start_y) {
-  var new_missile = {x:start_x, y:start_y, frame:0};
+function missile_add(start_x, start_y, speed_x, speed_y) {
+  var new_missile = {x:start_x, y:start_y, frame:0, dx:speed_x, dy:speed_y};
   missile.list.push(new_missile);
 }
 

@@ -19,6 +19,8 @@ var chopper = new Object();
 chopper.img = new Image();
 chopper.img_loaded = false;
 
+chopper.power = 4;
+
 // position, speed, acceleration
 chopper.x = CHOPPER_STARTING_X;
 chopper.y = CHOPPER_STARTING_Y;
@@ -49,8 +51,7 @@ function chopper_logic() {
   if (pressing.mouse) {
     if (mouse_pos.x < chopper.x) touching_left = true;
     else touching_right = true;
-  }
-  
+  }  
   
   // move left
   if (pressing.left || touching_left) {
@@ -96,13 +97,62 @@ function chopper_logic() {
   
   // additional logic
   chopper_logic_shoot();
+  chopper_logic_power();
+}
+
+/*
+ Test functions for changing ship power
+ */
+function chopper_logic_power() {
+  if (pressing.up && !input_lock.up) {
+    input_lock.up = true;
+	if (chopper.power < 4) chopper.power++;
+  }
+
+  if (pressing.down && !input_lock.down) {
+    input_lock.down = true;
+	if (chopper.power > 1) chopper.power--;
+  }
 }
 
 function chopper_logic_shoot() {
   chopper.shooting++;
+  var start_x = Math.round(chopper.x);
+  var start_y = Math.round(chopper.y);
+  
   if (chopper.shooting == CHOPPER_FRAMES_PER_SHOT) {
     chopper.shooting = 0;
-    missile_add(Math.round(chopper.x), Math.round(chopper.y));
+	
+	switch (chopper.power) {
+	
+      case 1: // one missile forward
+        missile_add(start_x, start_y, 0, -4);
+        break;
+		
+	  case 2: // two missiles forward
+        missile_add(start_x-3, start_y, 0, -4);
+		missile_add(start_x+3, start_y, 0, -4);
+        break;
+	  
+	  case 3: // four missiles forward
+        missile_add(start_x-3, start_y-2, 0, -4);
+		missile_add(start_x+3, start_y-2, 0, -4);
+        missile_add(start_x-9, start_y+2, 0, -4);
+		missile_add(start_x+9, start_y+2, 0, -4);
+        break;
+		
+	  case 4: // four missiles forward, two diagonal
+        missile_add(start_x-3, start_y-2, 0, -4);
+		missile_add(start_x+3, start_y-2, 0, -4);
+        missile_add(start_x-9, start_y+2, 0, -4);
+		missile_add(start_x+9, start_y+2, 0, -4);
+		
+        missile_add(start_x, start_y, -3, -3);
+		missile_add(start_x, start_y, 3, -3);
+        break;
+	  
+	  
+    }
   }
 
 }
