@@ -17,8 +17,10 @@ function gamestate_logic() {
       missile_logic();
       fedora_logic();
 	  particles_logic();
+	  pickup_logic();
       collide_dildo_fedora();
       collide_fedora_archangelle();
+	  collide_pickup_archangelle();
 	  break;
   } 
 }
@@ -35,6 +37,7 @@ function gamestate_render() {
       fedora_render();
       chopper_render();
       particles_render();
+	  pickup_render();
 	  
       // HUD stuff, move to new location
       bitfont_render("Dilds: " + missile.total, 2, 2, JUSTIFY_LEFT);

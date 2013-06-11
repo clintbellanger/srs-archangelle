@@ -59,6 +59,7 @@ function init() {
   // initialize all game units
   bitfont_init();
   particles_init();
+  pickup_init();
   chopper_init();
   missile_init();
   starfield_init();

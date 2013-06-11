@@ -17,7 +17,7 @@ var CHOPPER_FRAMES_PER_SHOT = 12;
 var chopper = new Object();
 
 chopper.img_id = 0;
-chopper.power = 4;
+chopper.power = 1;
 
 // position, speed, acceleration
 chopper.x = CHOPPER_STARTING_X;
@@ -90,7 +90,7 @@ function chopper_logic() {
   
   // additional logic
   chopper_logic_shoot();
-  chopper_logic_power();
+  //chopper_logic_power();
 }
 
 /*

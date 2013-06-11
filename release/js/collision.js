@@ -57,6 +57,16 @@ function collide_dildo_fedora() {
 		    fedora.list[i].x,
 		    fedora.list[i].y
 		  );
+		  
+		  waves.mob_count--;
+		  
+		  // is this the last one of this wave?
+		  if (waves.mob_count == 0 && waves.complete) {
+		    
+			// do reward
+			pickup_add(PICKUP_UPVOTE, fedora.list[i].x, fedora.list[i].y);
+		  
+		  }
 				  
           fedora_remove(i);
           fedora.destroyed++;
@@ -108,3 +118,23 @@ function collide_fedora_archangelle() {
 
 }
 
+function collide_pickup_archangelle() {
+  var contact = false;
+  for (var i = pickup.list.length -1; i >= 0; i--) {
+    contact = overlap (
+      pickup.list[i].x - PICKUP_HALF,
+      pickup.list[i].y - PICKUP_HALF,
+      PICKUP_SIZE,
+      PICKUP_SIZE,	  	
+	  chopper.x - CHOPPER_HALF,
+      chopper.y - CHOPPER_HALF,
+      CHOPPER_SIZE,
+      CHOPPER_SIZE
+	);
+	
+	if (contact) {
+	  pickup_remove(i);
+	  if (chopper.power < 4) chopper.power++;	
+	}
+  }
+}
