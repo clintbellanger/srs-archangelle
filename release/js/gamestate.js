@@ -35,7 +35,7 @@ function gamestate_render() {
       chopper_render();
 
       // HUD stuff, move to new location
-      bitfont_render("Dilds fired: " + missile.total, 2, 2, JUSTIFY_LEFT);
+      bitfont_render("Dilds: " + missile.total, 2, 2, JUSTIFY_LEFT);
       bitfont_render("Bens: " + fedora.destroyed, 318, 2, JUSTIFY_RIGHT);
 
 	  break;
