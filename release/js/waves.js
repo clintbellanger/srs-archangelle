@@ -78,6 +78,7 @@ function waves_logic_c() {
 function waves_logic_d() {
   if (waves.counter > 60 && waves.counter < 240) {
     if (waves.counter % 20 == 0) {
+	  waves.mob_count++;
       fedora_add(320 - waves.counter, -32, FEDORA_STRAIGHT);
 	  if (waves.counter == 220) waves.complete = true;
     }
