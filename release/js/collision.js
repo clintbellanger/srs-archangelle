@@ -38,22 +38,29 @@ function collide_dildo_fedora() {
       
       if (contact) {
         
+		// todo: create missile explosion animation
 		particles_add(
-		  PARTICLE_EXLPOSION_SMALL,
+		  PARTICLE_PIP,
 		  missile.list[j].x,
 		  missile.list[j].y
 		);
 		
         missile_remove(j);
-        // todo: create missile explosion animation
-		
-
+        		
+        // harm fedora and check for ben
         fedora.list[i].hp--;
         if (fedora.list[i].hp <= 0) {
+		
+		  // ben explosion animation
+		  particles_add(
+		    PARTICLE_BEN,
+		    fedora.list[i].x,
+		    fedora.list[i].y
+		  );
+				  
           fedora_remove(i);
           fedora.destroyed++;
 
-          // todo: create fedora explode animation
         }
 
         break;
@@ -81,7 +88,15 @@ function collide_fedora_archangelle() {
   
      if (contact) {
 
+	 	// ben explosion animation
+		particles_add(
+		  PARTICLE_BEN,
+		  fedora.list[i].x,
+		  fedora.list[i].y
+		);
+		  
         fedora_remove(i);
+        fedora.destroyed++;
 
         chopper.power--;
         if (chopper.power <= 0) {
