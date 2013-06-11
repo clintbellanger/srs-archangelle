@@ -50,8 +50,6 @@ function missile_render() {
   for (var i=missile.list.length-1; i>=0; i--) {
     missile_render_single(i);
   }
-  
-  bitfont_render("Dilds fired: " + missile.total, 2, 2, JUSTIFY_LEFT);
 }
 
 function missile_add(start_x, start_y, speed_x, speed_y) {

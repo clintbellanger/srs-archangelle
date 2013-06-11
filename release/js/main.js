@@ -61,6 +61,7 @@ function init() {
   chopper_init();
   missile_init();
   starfield_init();
+  fedora_init();
 
   init_complete = true;
 }
