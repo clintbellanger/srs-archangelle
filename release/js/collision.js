@@ -109,6 +109,7 @@ function collide_fedora_archangelle() {
         fedora.destroyed++;
 
         chopper.power--;
+		imageset.shaking = 10;
         if (chopper.power <= 0) {
           chopper.power = 1;
         }

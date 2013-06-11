@@ -21,6 +21,7 @@ function gamestate_logic() {
       collide_dildo_fedora();
       collide_fedora_archangelle();
 	  collide_pickup_archangelle();
+	  imageset_logic();
 	  break;
   } 
 }
