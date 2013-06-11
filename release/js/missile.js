@@ -50,10 +50,6 @@ function missile_add(start_x, start_y, speed_x, speed_y) {
 }
 
 function missile_remove(missile_id) {
-
-  // efficiency if we remove the last element
-  // instead of splicing the array?
-  // but I didn't test.
   missile.list[missile_id] = missile.list[missile.list.length-1];
   missile.list.pop();
 }

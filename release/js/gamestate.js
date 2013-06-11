@@ -16,6 +16,7 @@ function gamestate_logic() {
 	  chopper_logic();
       missile_logic();
       fedora_logic();
+	  particles_logic();
       collide_dildo_fedora();
       collide_fedora_archangelle();
 	  break;
@@ -33,7 +34,8 @@ function gamestate_render() {
       missile_render();
       fedora_render();
       chopper_render();
-
+      particles_render();
+	  
       // HUD stuff, move to new location
       bitfont_render("Dilds: " + missile.total, 2, 2, JUSTIFY_LEFT);
       bitfont_render("Bens: " + fedora.destroyed, 318, 2, JUSTIFY_RIGHT);

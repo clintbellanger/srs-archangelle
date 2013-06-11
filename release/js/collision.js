@@ -38,8 +38,15 @@ function collide_dildo_fedora() {
       
       if (contact) {
         
+		particles_add(
+		  PARTICLE_EXLPOSION_SMALL,
+		  missile.list[j].x,
+		  missile.list[j].y
+		);
+		
         missile_remove(j);
         // todo: create missile explosion animation
+		
 
         fedora.list[i].hp--;
         if (fedora.list[i].hp <= 0) {
