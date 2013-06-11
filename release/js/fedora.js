@@ -11,17 +11,10 @@ var fedora = new Object();
 fedora.list = new Array();
 fedora.total = 0;
 fedora.destroyed = 0;
-
-fedora.img = new Image();
-fedora.img_loaded = false;
+fedora.img_id = 0;
 
 function fedora_init() {
-  fedora.img.src = "images/enemies/fedora.png";
-  fedora.img.onload = function() {fedora_onload();};
-}
-
-function fedora_onload() {
-  fedora.img_loaded = true;
+  fedora.img_id = imageset_load("images/enemies/fedora.png");
 }
 
 function fedora_add(x, y, pattern) {
@@ -98,18 +91,15 @@ function fedora_render() {
 }
 
 function fedora_render_single(x, y, tilt) {
-  if (!fedora.img_loaded) return;
-  
-  ctx.drawImage(
-    fedora.img,
+    
+  imageset_render(
+    fedora.img_id,
     tilt * FEDORA_SIZE,
     0,
     FEDORA_SIZE,
     FEDORA_SIZE,
-    (x - FEDORA_HALF) * SCALE,
-    (y - FEDORA_HALF) * SCALE,
-    FEDORA_SIZE * SCALE,
-    FEDORA_SIZE * SCALE
+    x - FEDORA_HALF,
+    y - FEDORA_HALF
   );
 }
 

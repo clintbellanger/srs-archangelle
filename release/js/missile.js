@@ -5,26 +5,17 @@ var MISSILE_WIDTH = 8;
 var MISSILE_HEIGHT = 12;
 var MISSILE_WIDTH_HALF = 4;
 var MISSILE_HEIGHT_HALF = 6;
-// var MISSILE_SPEED = 4;
 var MISSILE_FRAMECOUNT = 4;
 var MISSILE_FRAMELENGTH = 3;
 
 var missile = new Object();
 
-missile.img = new Image();
-missile.img_loaded = false;
-
+missile.img_id = 0;
 missile.list = new Array();
-
 missile.total = 0;
 
 function missile_init() {
-  missile.img.src = "images/dild_missile.png";
-  missile.img.onload = function() {missile_onload();};
-}
-
-function missile_onload() {
-  missile.img_loaded = true;
+  missile.img_id = imageset_load("images/dild_missile.png");
 }
 
 function missile_logic() {
@@ -68,19 +59,15 @@ function missile_remove(missile_id) {
 }
 
 function missile_render_single(missile_id) {
-
-  if (!missile.img_loaded) return;
   
-  ctx.drawImage(
-    missile.img,
+  imageset_render(
+    missile.img_id,
     Math.floor(missile.list[missile_id].frame / MISSILE_FRAMELENGTH) * MISSILE_WIDTH,
     0,
     MISSILE_WIDTH,
     MISSILE_HEIGHT,
-    (missile.list[missile_id].x - MISSILE_WIDTH_HALF) * SCALE,
-    (missile.list[missile_id].y - MISSILE_HEIGHT_HALF) * SCALE,
-    MISSILE_WIDTH * SCALE,
-    MISSILE_HEIGHT * SCALE
-  );    
-
+    missile.list[missile_id].x - MISSILE_WIDTH_HALF,
+    missile.list[missile_id].y - MISSILE_HEIGHT_HALF
+  );
 }
+

@@ -16,8 +16,7 @@ var JUSTIFY_CENTER = 2;
 
 var bitfont = new Object();
 
-bitfont.img = new Image();
-bitfont.loaded = false;
+bitfont.img_id = 0;
 
 bitfont.kerning = -1;
 bitfont.height = 8;
@@ -98,20 +97,13 @@ bitfont.glyph_x["}"] = 501; bitfont.glyph_w["}"] = 5;
 bitfont.glyph_x["~"] = 507; bitfont.glyph_w["~"] = 9;
 
 function bitfont_init() {
-  bitfont.img.src = "images/interface/boxy_bold.png";
-  bitfont.img.onload = function() {bitfont_onload();};
-}
-
-function bitfont_onload() {
-  bitfont.loaded = true;
+  bitfont.img_id = imageset_load("images/interface/boxy_bold.png");
 }
 
 /**
  * Render text left-justified at x,y
  */
 function bitfont_render(text, x, y, justify) {
-
-  if (!bitfont.loaded) return;
 
   var uptext = text.toUpperCase();
   bitfont_setposition(uptext, x, justify);
@@ -169,16 +161,14 @@ function bitfont_renderglyph(character, y) {
   }
   else {
 
-    ctx.drawImage(
-      bitfont.img,
+    imageset_render (
+	  bitfont.img_id,
       bitfont.glyph_x[character],
       0,
       bitfont.glyph_w[character],
       bitfont.height,	  
-      bitfont.cursor_x * SCALE,
-      y * SCALE,
-      bitfont.glyph_w[character] * SCALE,
-      bitfont.height * SCALE
+      bitfont.cursor_x,
+      y
     );
 
     bitfont.cursor_x += bitfont.glyph_w[character] + bitfont.kerning;
