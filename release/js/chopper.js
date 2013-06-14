@@ -13,6 +13,8 @@ var CHOPPER_STARTING_X = 160.0;
 var CHOPPER_STARTING_Y = 216.0;
 var CHOPPER_FRAMECOUNT = 3;
 var CHOPPER_FRAMES_PER_SHOT = 12;
+var CHOPPER_COLLISION_WIDTH = 12;
+var CHOPPER_COLLISION_HEIGHT = 24;
 
 var chopper = new Object();
 
@@ -109,6 +111,7 @@ function chopper_logic_power() {
 }
 
 function chopper_logic_shoot() {
+
   chopper.shooting++;
   var start_x = Math.round(chopper.x);
   var start_y = Math.round(chopper.y);

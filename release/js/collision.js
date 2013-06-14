@@ -90,10 +90,10 @@ function collide_fedora_archangelle() {
         fedora.list[i].y - FEDORA_HALF,
         FEDORA_SIZE,
         FEDORA_SIZE,
-        chopper.x - CHOPPER_HALF,
-        chopper.y - CHOPPER_HALF,
-        CHOPPER_SIZE,
-        CHOPPER_SIZE
+        chopper.x - CHOPPER_COLLISION_WIDTH/2,
+        chopper.y - CHOPPER_COLLISION_HEIGHT/2,
+        CHOPPER_COLLISION_WIDTH,
+        CHOPPER_COLLISION_HEIGHT
      );
   
      if (contact) {
