@@ -43,7 +43,7 @@ function waves_logic_a() {
   else if (waves.counter >= 150 && waves.counter < 300) {
     if (waves.counter % 25== 0) {
 	  waves.mob_count++;
-      fedora_add(288, -32, FEDORA_STRAIGHT);
+      fedora_add(VIEW_WIDTH-32, -32, FEDORA_STRAIGHT);
 	  if (waves.counter == 275) waves.complete = true;
     }
   }
@@ -53,7 +53,7 @@ function waves_logic_b() {
   if (waves.counter < 150) {
     if (waves.counter % 25 == 0) {
 	  waves.mob_count++;
-      fedora_add(288, -32, FEDORA_STRAIGHT);
+      fedora_add(VIEW_WIDTH-32, -32, FEDORA_STRAIGHT);
     }
   }
   else if (waves.counter >= 150 && waves.counter < 300) {
@@ -79,7 +79,7 @@ function waves_logic_d() {
   if (waves.counter > 60 && waves.counter < 240) {
     if (waves.counter % 20 == 0) {
 	  waves.mob_count++;
-      fedora_add(320 - waves.counter, -32, FEDORA_STRAIGHT);
+      fedora_add(VIEW_WIDTH - waves.counter, -32, FEDORA_STRAIGHT);
 	  if (waves.counter == 220) waves.complete = true;
     }
   }

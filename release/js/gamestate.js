@@ -29,7 +29,7 @@ function gamestate_logic() {
 function gamestate_render() {
 
   // clear canvas
-  ctx.fillRect(0,0,320*SCALE,240*SCALE);
+  ctx.fillRect(0, 0, VIEW_WIDTH * SCALE, VIEW_HEIGHT * SCALE);
 
   switch(gamestate) {
     case STATE_PLAY:	
@@ -41,8 +41,9 @@ function gamestate_render() {
 	  pickup_render();
 	  
       // HUD stuff, move to new location
-      bitfont_render("Dilds: " + missile.total, 2, 2, JUSTIFY_LEFT);
-      bitfont_render("Bens: " + fedora.destroyed, 318, 2, JUSTIFY_RIGHT);
+      var margin = 4;
+      bitfont_render("Dilds: " + missile.total, margin, margin, JUSTIFY_LEFT);
+      bitfont_render("Bens: " + fedora.destroyed, VIEW_WIDTH-margin, margin, JUSTIFY_RIGHT);
 
 	  break;
   }

@@ -39,7 +39,7 @@ function fedora_remove(fedora_id) {
 function fedora_logic() {
   for (var i=fedora.list.length-1; i>=0; i--) {
     fedora_move(i);
-    if (fedora.list[i].y >= 256) {
+    if (fedora.list[i].y >= VIEW_HEIGHT + FEDORA_HALF) {
       fedora_remove(i);
     }
   }
@@ -62,17 +62,17 @@ function fedora_move(fedora_id) {
 }
 
 function fedora_tilt(y) {
-  if (y < 45) return 2;
-  if (y < 50) return 1;
+  if (y < 80) return 2;
+  if (y < 85) return 1;
 
 
-  if (y < 90) return 0;
-  if (y < 95) return 1;
-  if (y < 100) return 2;
-  if (y < 105) return 3;
-
-  if (y < 150) return 4;
+  if (y < 140) return 0;
+  if (y < 145) return 1;
+  if (y < 150) return 2;
   if (y < 155) return 3;
+
+  if (y < 200) return 4;
+  if (y < 205) return 3;
 
   return 2;
 }

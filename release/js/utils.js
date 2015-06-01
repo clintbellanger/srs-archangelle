@@ -3,8 +3,8 @@
  * Determine if the point is within the rect
  */
  
-var VIEW_WIDTH = 320;
-var VIEW_HEIGHT = 240;
+var VIEW_WIDTH = 240;
+var VIEW_HEIGHT = 400;
  
 function isWithin(point, rect) {
   if (point.x < rect.x) return false;
