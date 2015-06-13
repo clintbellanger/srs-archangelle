@@ -10,15 +10,13 @@ var MISSILE_FRAMELENGTH = 3;
 
 var missile = new Object();
 
-missile.img_id = 0;
-missile.list = new Array();
-missile.total = 0;
-
-function missile_init() {
+missile.init = function() {
   missile.img_id = imageset_load("images/dild_missile.png");
+  missile.list = new Array();
+  missile.total = 0;  
 }
 
-function missile_logic() {
+missile.logic = function() {
 
   for (var i=missile.list.length-1; i>=0; i--) {
 
@@ -32,29 +30,30 @@ function missile_logic() {
     
     // leave screen
     if (missile.list[i].y < -MISSILE_HEIGHT) {
-      missile_remove(i);
+      missile.remove(i);
     }
   }
 }
 
-function missile_render() {
+missile.render = function() {
+
   for (var i=missile.list.length-1; i>=0; i--) {
-    missile_render_single(i);
+    missile.render_single(i);
   }
 }
 
-function missile_add(start_x, start_y, speed_x, speed_y) {
+missile.add = function(start_x, start_y, speed_x, speed_y) {
   var new_missile = {x:start_x, y:start_y, frame:0, dx:speed_x, dy:speed_y};
   missile.list.push(new_missile);
   missile.total++;
 }
 
-function missile_remove(missile_id) {
+missile.remove = function(missile_id) {
   missile.list[missile_id] = missile.list[missile.list.length-1];
   missile.list.pop();
 }
 
-function missile_render_single(missile_id) {
+missile.render_single = function(missile_id) {
   
   imageset_render(
     missile.img_id,

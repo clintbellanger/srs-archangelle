@@ -14,7 +14,7 @@ function gamestate_logic() {
       waves_logic();
 	  starfield_logic();
 	  chopper_logic();
-      missile_logic();
+      missile.logic();
       fedora_logic();
 	  particles_logic();
 	  pickup_logic();
@@ -34,7 +34,7 @@ function gamestate_render() {
   switch(gamestate) {
     case STATE_PLAY:	
       starfield_render();
-      missile_render();
+      missile.render();
       fedora_render();
       chopper_render();
       particles_render();

@@ -61,7 +61,7 @@ function init() {
   particles_init();
   pickup_init();
   chopper_init();
-  missile_init();
+  missile.init();
   starfield_init();
   fedora_init();
 

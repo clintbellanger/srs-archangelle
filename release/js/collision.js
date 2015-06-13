@@ -45,7 +45,7 @@ function collide_dildo_fedora() {
 		  missile.list[j].y
 		);
 		
-        missile_remove(j);
+        missile.remove(j);
         		
         // harm fedora and check for ben
         fedora.list[i].hp--;

@@ -122,29 +122,29 @@ function chopper_logic_shoot() {
 	switch (chopper.power) {
 	
       case 1: // one missile forward
-        missile_add(start_x, start_y, 0, -4);
+        missile.add(start_x, start_y, 0, -4);
         break;
 		
 	  case 2: // two missiles forward
-        missile_add(start_x-3, start_y, 0, -4);
-		missile_add(start_x+3, start_y, 0, -4);
+        missile.add(start_x-3, start_y, 0, -4);
+		missile.add(start_x+3, start_y, 0, -4);
         break;
 	  
 	  case 3: // four missiles forward
-        missile_add(start_x-3, start_y-2, 0, -4);
-		missile_add(start_x+3, start_y-2, 0, -4);
-        missile_add(start_x-9, start_y+2, 0, -4);
-		missile_add(start_x+9, start_y+2, 0, -4);
+        missile.add(start_x-3, start_y-2, 0, -4);
+		missile.add(start_x+3, start_y-2, 0, -4);
+        missile.add(start_x-9, start_y+2, 0, -4);
+		missile.add(start_x+9, start_y+2, 0, -4);
         break;
 		
 	  case 4: // four missiles forward, two diagonal
-        missile_add(start_x-3, start_y-2, 0, -4);
-		missile_add(start_x+3, start_y-2, 0, -4);
-        missile_add(start_x-9, start_y+2, 0, -4);
-		missile_add(start_x+9, start_y+2, 0, -4);
+        missile.add(start_x-3, start_y-2, 0, -4);
+		missile.add(start_x+3, start_y-2, 0, -4);
+        missile.add(start_x-9, start_y+2, 0, -4);
+		missile.add(start_x+9, start_y+2, 0, -4);
 		
-        missile_add(start_x, start_y, -3, -3);
-		missile_add(start_x, start_y, 3, -3);
+        missile.add(start_x, start_y, -3, -3);
+		missile.add(start_x, start_y, 3, -3);
         break;	  	  
     }
   }
