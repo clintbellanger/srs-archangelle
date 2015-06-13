@@ -19,7 +19,7 @@ var CHOPPER_COLLISION_HEIGHT = 24;
 var chopper = new Object();
 
 chopper.img_id = 0;
-chopper.power = 1;
+chopper.power = 0;
 
 // position, speed, acceleration
 chopper.x = CHOPPER_STARTING_X;
@@ -121,34 +121,76 @@ function chopper_logic_shoot() {
 	
 	switch (chopper.power) {
 	
-      case 1: // one missile forward
+      case 0: // one missile forward
         missile.add(start_x, start_y, 0, -4);
         break;
 		
-	  case 2: // two missiles forward
+	  case 1: // two missiles forward
         missile.add(start_x-3, start_y, 0, -4);
 		missile.add(start_x+3, start_y, 0, -4);
         break;
 	  
-	  case 3: // four missiles forward
+	  case 2: // four missiles forward
         missile.add(start_x-3, start_y-2, 0, -4);
 		missile.add(start_x+3, start_y-2, 0, -4);
         missile.add(start_x-9, start_y+2, 0, -4);
 		missile.add(start_x+9, start_y+2, 0, -4);
         break;
 		
-	  case 4: // four missiles forward, two diagonal
+	  case 3: // eight missiles. 4 forward, 4 diagonal
         missile.add(start_x-3, start_y-2, 0, -4);
 		missile.add(start_x+3, start_y-2, 0, -4);
         missile.add(start_x-9, start_y+2, 0, -4);
 		missile.add(start_x+9, start_y+2, 0, -4);
 		
-        missile.add(start_x, start_y, -3, -3);
-		missile.add(start_x, start_y, 3, -3);
-        break;	  	  
+        missile.add(start_x, start_y, -1, -3);
+        missile.add(start_x, start_y, -3, -2);        
+        missile.add(start_x, start_y, 1, -3);
+		missile.add(start_x, start_y, 3, -2);        
+        break;
+        
+       case 4: // sixteen missiles, max power
+       
+        // 6 forward in wide formation
+        missile.add(start_x-3, start_y-2, 0, -4);
+		missile.add(start_x+3, start_y-2, 0, -4);
+        missile.add(start_x-9, start_y-2, 0, -4);
+		missile.add(start_x+9, start_y-2, 0, -4);
+        missile.add(start_x-15, start_y+2, 0, -4);
+        missile.add(start_x+15, start_y+2, 0, -4);
+
+        // double the diagonals
+        missile.add(start_x, start_y, -1, -3);
+        missile.add(start_x-6, start_y, -1, -3);
+
+        missile.add(start_x, start_y, -3, -2);
+        missile.add(start_x-6, start_y, -3, -2);
+        
+        missile.add(start_x, start_y, 1, -3);
+        missile.add(start_x+6, start_y, 1, -3);
+        
+		missile.add(start_x, start_y, 3, -2);        
+		missile.add(start_x+6, start_y, 3, -2);
+        
+        // protect the sides
+        missile.add(start_x, start_y, -4, 0);
+        missile.add(start_x, start_y, 4, 0);
+        break;
     }
   }
 
+}
+
+function chopper_powerup() {
+  if (chopper.power < 4) chopper.power++;	
+}
+
+function chopper_powerdown() {
+  if (chopper.power > 0) chopper.power--;
+}
+
+function chopper_dilds_per_shot() {
+  return Math.pow(2, chopper.power);
 }
 
 function chopper_render() {

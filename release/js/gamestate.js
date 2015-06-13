@@ -42,8 +42,9 @@ function gamestate_render() {
 	  
       // HUD stuff, move to new location
       var margin = 4;
-      bitfont_render("Dilds: " + missile.total, margin, margin, JUSTIFY_LEFT);
-      bitfont_render("Bens: " + fedora.destroyed, VIEW_WIDTH-margin, margin, JUSTIFY_RIGHT);
+      bitfont_render("Dilds " + chopper_dilds_per_shot() + "x", margin, margin, JUSTIFY_LEFT);
+      // bitfont_render("Dilds Fired: " + missile.total, margin, margin, JUSTIFY_LEFT);
+      bitfont_render(fedora.destroyed + " Bens", VIEW_WIDTH-margin, margin, JUSTIFY_RIGHT);
 
 	  break;
   }

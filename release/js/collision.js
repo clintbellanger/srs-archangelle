@@ -108,11 +108,9 @@ function collide_fedora_archangelle() {
         fedora_remove(i);
         fedora.destroyed++;
 
-        chopper.power--;
+        chopper_powerdown();
+        
 		imageset.shaking = 10;
-        if (chopper.power <= 0) {
-          chopper.power = 1;
-        }
 
      }
   }
@@ -135,7 +133,8 @@ function collide_pickup_archangelle() {
 	
 	if (contact) {
 	  pickup_remove(i);
-	  if (chopper.power < 4) chopper.power++;	
+      chopper_powerup();
+
 	}
   }
 }
