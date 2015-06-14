@@ -58,7 +58,7 @@ title.render = function() {
   story_y = VIEW_HEIGHT * 0.55;  
   bitfont_render("Reddit sector SRS Prime", VIEW_WIDTH/2, story_y, JUSTIFY_CENTER);
   story_y += 12;
-  bitfont_render("is invaded by Shitlord Brigade.", VIEW_WIDTH/2, story_y, JUSTIFY_CENTER);
+  bitfont_render("is being brigaded by Shitlords.", VIEW_WIDTH/2, story_y, JUSTIFY_CENTER);
   story_y += 12;
   bitfont_render("The Archangelles need You!", VIEW_WIDTH/2, story_y, JUSTIFY_CENTER);
   
