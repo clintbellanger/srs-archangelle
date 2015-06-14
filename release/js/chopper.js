@@ -90,9 +90,6 @@ function chopper_logic() {
   if (chopper.x < CHOPPER_HALF) chopper.x = CHOPPER_HALF;
   if (chopper.x > VIEW_WIDTH - CHOPPER_HALF) chopper.x = VIEW_WIDTH - CHOPPER_HALF;
   
-  // additional logic
-  chopper_logic_shoot();
-  //chopper_logic_power();
 }
 
 /*

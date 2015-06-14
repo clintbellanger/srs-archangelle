@@ -4,8 +4,9 @@
  */
  
 var STATE_PLAY = 0;
+var STATE_TITLE = 1;
  
-var gamestate = STATE_PLAY;
+var gamestate = STATE_TITLE;
 
 function gamestate_logic() {
 
@@ -14,6 +15,7 @@ function gamestate_logic() {
       waves_logic();
 	  starfield_logic();
 	  chopper_logic();
+      chopper_logic_shoot();
       missile.logic();
       fedora_logic();
 	  particles_logic();
@@ -23,7 +25,12 @@ function gamestate_logic() {
 	  collide_pickup_archangelle();
 	  imageset_logic();
 	  break;
-  } 
+      
+    case STATE_TITLE: 
+      title.logic();
+      break;
+  }
+  
 }
 
 function gamestate_render() {
@@ -41,12 +48,16 @@ function gamestate_render() {
 	  pickup_render();
 	  
       // HUD stuff, move to new location
-      var margin = 4;
-      bitfont_render("Dilds " + chopper_dilds_per_shot() + "x", margin, margin, JUSTIFY_LEFT);
-      // bitfont_render("Dilds Fired: " + missile.total, margin, margin, JUSTIFY_LEFT);
-      bitfont_render(fedora.destroyed + " Bens", VIEW_WIDTH-margin, margin, JUSTIFY_RIGHT);
+      bitfont_render("Dilds " + chopper_dilds_per_shot() + "x", UI_MARGIN, UI_MARGIN, JUSTIFY_LEFT);
+      // bitfont_render("Dilds Fired: " + missile.total, UI_MARGIN, UI_MARGIN, JUSTIFY_LEFT);
+      bitfont_render(fedora.destroyed + " Bens", VIEW_WIDTH - UI_MARGIN, UI_MARGIN, JUSTIFY_RIGHT);
 
 	  break;
+      
+    case STATE_TITLE:
+      title.render();
+      break;
   }
+  
 }
 

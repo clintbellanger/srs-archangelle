@@ -5,7 +5,8 @@
  
 var VIEW_WIDTH = 240;
 var VIEW_HEIGHT = 400;
- 
+var UI_MARGIN = 8;
+
 function isWithin(point, rect) {
   if (point.x < rect.x) return false;
   if (point.y < rect.y) return false;
