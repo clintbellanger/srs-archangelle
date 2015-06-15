@@ -44,6 +44,10 @@ missile.render = function() {
 
 missile.add = function(start_x, start_y, speed_x, speed_y) {
   var new_missile = {x:start_x, y:start_y, frame:0, dx:speed_x, dy:speed_y};
+  
+  // random starting framecount
+  new_missile.frame = Math.floor(Math.random() * (MISSILE_FRAMECOUNT * MISSILE_FRAMELENGTH));
+  
   missile.list.push(new_missile);
   missile.total++;
 }
