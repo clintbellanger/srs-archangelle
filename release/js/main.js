@@ -64,6 +64,7 @@ function init() {
   missile.init();
   starfield_init();
   fedora_init();
+  videocom.init();
   title.init();
 
   init_complete = true;

@@ -19,16 +19,18 @@ function waves_logic() {
      waves.counter = 0;
 
      // choose wave type
-     waves.type = Math.floor(Math.random() * 4);
+     waves.type = Math.floor(Math.random() * 5);
 	 waves.complete = false;
 	 waves.mob_count = 0;
   }
 
   switch (waves.type) {
-    case 0: waves_logic_a(); break;
-    case 1: waves_logic_b(); break;
-    case 2: waves_logic_c(); break;
-    case 3: waves_logic_d(); break;
+    case 0: waves_logic_videocom(); break;
+    case 1: waves_logic_a(); break;
+    case 2: waves_logic_b(); break;
+    case 3: waves_logic_c(); break;
+    case 4: waves_logic_d(); break;
+    
   }
 
 }
@@ -85,6 +87,12 @@ function waves_logic_d() {
   }
 }
 
+// during this wave there are no new enemies
+// instead there is a video communication break
+function waves_logic_videocom() {
+  if (waves.counter == 1) videocom.activate();
+  if (waves.counter == 60) waves.complete = true;
+}
 
 
 

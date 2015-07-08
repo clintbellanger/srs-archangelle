@@ -23,6 +23,7 @@ function gamestate_logic() {
       collide_dildo_fedora();
       collide_fedora_archangelle();
 	  collide_pickup_archangelle();
+      videocom.logic();
 	  imageset_logic();
 	  break;
       
@@ -46,6 +47,8 @@ function gamestate_render() {
       chopper_render();
       particles_render();
 	  pickup_render();
+      
+      videocom.render();
 	  
       // HUD stuff, move to new location
       bitfont_render("Dilds " + chopper_dilds_per_shot() + "x", UI_MARGIN, UI_MARGIN, JUSTIFY_LEFT);
