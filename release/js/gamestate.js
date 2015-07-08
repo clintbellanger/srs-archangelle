@@ -19,7 +19,7 @@ function gamestate_logic() {
       missile.logic();
       fedora_logic();
 	  particles_logic();
-	  pickup_logic();
+	  pickup.logic();
       collide_dildo_fedora();
       collide_fedora_archangelle();
 	  collide_pickup_archangelle();
@@ -46,7 +46,7 @@ function gamestate_render() {
       fedora_render();
       chopper_render();
       particles_render();
-	  pickup_render();
+	  pickup.render();
       
       videocom.render();
 	  

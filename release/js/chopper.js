@@ -184,6 +184,7 @@ function chopper_powerup() {
 
 function chopper_powerdown() {
   if (chopper.power > 0) chopper.power--;
+  imageset.shaking = 8;
 }
 
 function chopper_dilds_per_shot() {
