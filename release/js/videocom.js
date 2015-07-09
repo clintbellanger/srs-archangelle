@@ -23,6 +23,9 @@ videocom.init = function() {
   videocom.portrait_screen_y = 24;
   videocom.current_portrait = 0;
   
+  // brd can also chime in
+  videocom.brd = imageset_load("images/interface/brd.png");
+  
   // message settings
   videocom.message_id = 0;
   videocom.message_screen_x = 80;
@@ -40,19 +43,29 @@ videocom.init = function() {
   videocom.timer = 0;
   videocom.maxtimer = 360; // 6 seconds at 60 fps
   
-  // 
   videocom.active = false;
+  videocom.is_friendly = false;
 }
 
-videocom.activate = function() {
+videocom.activate_enemy = function() {
   videocom.active = true;
   videocom.timer = 0;
+  videocom.is_friendly = false;
   
   // choose random portrait
-  videocom.current_portrait = Math.floor(Math.random() * videocom.portrait_options)
+  videocom.current_portrait = Math.floor(Math.random() * videocom.portrait_options);
   
   // choose random quote  
   videocom.message_id = Math.floor(Math.random() * quotes.length); 
+}
+
+videocom.activate_brd = function() {
+  videocom.active = true;
+  videocom.timer = 0;  
+  videocom.is_friendly = true;
+  
+  // 0 is reserved tutorial/intro
+  videocom.message_id = Math.floor(Math.random() * 4) +1;
 }
 
 videocom.deactivate = function() {
@@ -88,6 +101,7 @@ videocom.render = function() {
   if (!videocom.active) return;
   
   if (videocom.currently_static) videocom.render_static();
+  else if (videocom.is_friendly) videocom.render_brd();
   else videocom.render_portrait(videocom.current_portrait);
     
   videocom.render_border();
@@ -109,6 +123,20 @@ videocom.render_portrait = function(portrait_id) {
     videocom.portrait_screen_y
   );
 }
+
+videocom.render_brd = function() {
+
+  imageset_render(
+    videocom.brd,
+    0,
+    0,
+    videocom.portrait_width,
+    videocom.portrait_height,
+    videocom.portrait_screen_x,
+    videocom.portrait_screen_y
+  );
+}
+
 
 videocom.render_border = function() {
    imageset_render(
@@ -135,11 +163,81 @@ videocom.render_static = function() {
 }
 
 videocom.render_message = function(message_id) {
-  screen_y = videocom.message_screen_y;
-  bitfont_render(quotes[message_id][0], videocom.message_screen_x, screen_y, JUSTIFY_LEFT);
-  screen_y += videocom.message_lineheight;
-  bitfont_render(quotes[message_id][1], videocom.message_screen_x, screen_y, JUSTIFY_LEFT);
-  screen_y += videocom.message_lineheight;
-  bitfont_render(quotes[message_id][2], videocom.message_screen_x, screen_y, JUSTIFY_LEFT);
+  if (videocom.is_friendly)
+     videocom.render_friendly_message(message_id);
+  else
+     videocom.render_enemy_message(message_id);
 }
 
+// standard static message 
+videocom.render_enemy_message = function(message_id) {
+  
+  var str1 = quotes[message_id][0];
+  var str2 = quotes[message_id][1];
+  var str3 = quotes[message_id][2];
+  videocom.render_lines(str1, str2, str3);  
+}
+
+// sometimes dynamic messages
+videocom.render_friendly_message = function(message_id) {
+
+  var str1 = "";
+  var str2 = "";
+  var str3 = "";
+  
+  // scratch vars
+  var total_enemies;
+  var accuracy;
+  
+  switch (message_id) {
+  
+    case 0:
+      str1 = "Welcome cadet! Pilot the"
+      str2 = "Brd to victory and let";
+      str3 = "loose the dilds of war!";
+      break;
+      
+    case 1:
+      str1 = "Cadet! You have launched";
+      str2 = missile.total + " Dilds!";
+      str3 = "Amazing!";  
+      break;
+      
+    case 2:
+      
+      total_enemies = fedora.destroyed + fedora.missed;
+
+      if (total_enemies === 0) accuracy = 100;
+      else accuracy = Math.floor((fedora.destroyed / total_enemies) * 100);
+      
+      str1 = "Cadet! Your accuracy is";
+      str2 = accuracy + "%!";
+      str3 = "Keep it up!";
+      break;
+      
+    case 3:
+    
+      str1 = "Collect orange upvotes";
+      str2 = "to power up your dilds!";
+      break;
+      
+    case 4:
+    
+      str1 = "Avoid blue downvotes!";
+      str2 = "They will disrupt your";
+      str3 = "dilds multiplier.";
+      break;
+      
+  }
+
+  videocom.render_lines(str1, str2, str3);  
+}
+
+videocom.render_lines = function(str1, str2, str3) {
+  screen_y = videocom.message_screen_y;
+  bitfont_render(str1, videocom.message_screen_x, screen_y, JUSTIFY_LEFT);
+  screen_y += videocom.message_lineheight;
+  bitfont_render(str2, videocom.message_screen_x, screen_y, JUSTIFY_LEFT);
+  screen_y += videocom.message_lineheight;
+  bitfont_render(str3, videocom.message_screen_x, screen_y, JUSTIFY_LEFT);
+}

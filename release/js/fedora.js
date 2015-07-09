@@ -11,7 +11,9 @@ var fedora = new Object();
 fedora.list = new Array();
 fedora.total = 0;
 fedora.destroyed = 0;
+fedora.missed = 0;
 fedora.img_id = 0;
+
 
 function fedora_init() {
   fedora.img_id = imageset_load("images/enemies/fedora.png");
@@ -41,6 +43,7 @@ function fedora_logic() {
     fedora_move(i);
     if (fedora.list[i].y >= VIEW_HEIGHT + FEDORA_HALF) {
       fedora_remove(i);
+      fedora.missed++;
     }
   }
 }
