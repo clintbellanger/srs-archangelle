@@ -121,10 +121,10 @@ function collide_pickup_archangelle() {
   var contact = false;
   for (var i = pickup.available_list.length -1; i >= 0; i--) {
     contact = overlap (
-      pickup.available_list[i].x - pickup.HALFWIDTH,
-      pickup.available_list[i].y - pickup.HALFWIDTH,
-      pickup.WIDTH,
-      pickup.WIDTH,          
+      pickup.available_list[i].x - pickup.halfwidth,
+      pickup.available_list[i].y - pickup.halfwidth,
+      pickup.width,
+      pickup.width,          
       chopper.x - CHOPPER_HALF,
       chopper.y - CHOPPER_HALF,
       CHOPPER_SIZE,

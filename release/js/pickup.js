@@ -6,15 +6,14 @@ var pickup = new Object();
 
 pickup.init = function() {
 
-  // enumerate the types
-  pickup.TYPE_UPVOTE = 0;
-  pickup.TYPE_DOWNVOTE = 1;
+  pickup.type_missile_up = 0;
 
-  pickup.upvote_img = imageset_load("images/upvote.png");
-  pickup.downvote_img = imageset_load("images/downvote.png");
-  pickup.WIDTH = 8;
-  pickup.HALFWIDTH = 4;
-
+  pickup.missile_img = imageset_load("images/dild_powerup.png");
+  pickup.width = 20;
+  pickup.halfwidth = 10;
+  pickup.frame_duration = 5;
+  pickup.frame_count = 4;
+  
   pickup.available_list = new Array();  
   
 }
@@ -40,18 +39,16 @@ pickup.remove = function(pickup_id) {
 }
 
 pickup.choose_random = function() {
-  if (Math.random() < 0.67) return pickup.TYPE_UPVOTE;
-  return pickup.TYPE_DOWNVOTE;
+
+  // currently only one drop type
+  return pickup.type_missile_up;
 }
 
 pickup.reward = function(pickup_id) {
   var new_item = pickup.available_list[pickup_id].type;
   
-  if (new_item == pickup.TYPE_UPVOTE) {
+  if (new_item === pickup.type_missile_up) {
     chopper_powerup();
-  }
-  else if (new_item == pickup.TYPE_DOWNVOTE) {
-    chopper_powerdown();
   }
   
   pickup.remove(pickup_id);
@@ -63,7 +60,7 @@ pickup.logic = function() {
     pickup.available_list[i].frame++;
     pickup.available_list[i].y += 1;
     
-    if (pickup.available_list[i].frame == 8) {
+    if (pickup.available_list[i].frame === (pickup.frame_count * pickup.frame_duration)) {
       pickup.available_list[i].frame = 0;
     }
     
@@ -85,23 +82,19 @@ pickup.render_single = function(pickup_id) {
   var img_id;
   var pickup_type = pickup.available_list[pickup_id].type;
   
-  // use type to look up image id
   // TODO: make a pickup_type struct to contain the info about each pickup type
-  if (pickup_type === pickup.TYPE_UPVOTE) {
-    img_id = pickup.upvote_img;
-  }
-  else if (pickup_type === pickup.TYPE_DOWNVOTE) {
-    img_id = pickup.downvote_img;
+  if (pickup_type === pickup.type_missile_up) {
+    img_id = pickup.missile_img;
   }
 
   imageset_render(
     img_id,
-    Math.floor(pickup.available_list[pickup_id].frame/2) * pickup.WIDTH,
+    Math.floor(pickup.available_list[pickup_id].frame / pickup.frame_duration) * pickup.width,
     0,
-    pickup.WIDTH,
-    pickup.WIDTH,
-    pickup.available_list[pickup_id].x - pickup.HALFWIDTH,
-    pickup.available_list[pickup_id].y - pickup.HALFWIDTH
+    pickup.width,
+    pickup.width,
+    pickup.available_list[pickup_id].x - pickup.halfwidth,
+    pickup.available_list[pickup_id].y - pickup.halfwidth
   );
     
 }
