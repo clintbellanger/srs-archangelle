@@ -10,7 +10,7 @@ quotes = [
   ["I mean, I'm not even mad,", "I just pity you guys.", ""],
   ["For too long we have", "sat back and watched you", "shrill harpies propagate."],
   ["Fuck off back to the", "hug box that is Tumblr.", "leave our site alone."],
-  ["Whenevever I visit this", "subreddit I'm left hating", "myself for having a penis."],
+  ["Whenever I visit this", "subreddit I'm left hating", "myself for having a penis."],
   ["This place is a cesspool", "of unnecessary anger", "and self pity."],
   ["Do you think you're", "shocking someone with", "your phallic emoticons?"],
   ["The vast majority of the", "things submitted to this", "sub are harmless jokes."],

@@ -2,7 +2,7 @@
  Background parallax pixel starfield
  */
  
-var STAR_COUNT = 255;
+var STAR_COUNT = 125;
 var starfield = new Object();
 
 starfield.list = new Array();

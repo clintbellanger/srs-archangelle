@@ -65,7 +65,7 @@ videocom.activate_brd = function() {
   videocom.is_friendly = true;
   
   // 0 is reserved tutorial/intro
-  videocom.message_id = Math.floor(Math.random() * 4) +1;
+  videocom.message_id = Math.floor(Math.random() * 3) +1;
 }
 
 videocom.deactivate = function() {
@@ -200,7 +200,7 @@ videocom.render_friendly_message = function(message_id) {
     case 1:
       str1 = "Cadet! You have launched";
       str2 = missile.total + " Dilds!";
-      str3 = "Amazing!";  
+      str3 = "Reddit Delenda Est!";  
       break;
       
     case 2:
@@ -217,17 +217,10 @@ videocom.render_friendly_message = function(message_id) {
       
     case 3:
     
-      str1 = "Collect orange upvotes";
-      str2 = "to power up your dilds!";
+      str1 = "Collect man tears";
+      str2 = "to power up your";
+      str3 = "dilds multiplier!";
       break;
-      
-    case 4:
-    
-      str1 = "Avoid blue downvotes!";
-      str2 = "They will disrupt your";
-      str3 = "dilds multiplier.";
-      break;
-      
   }
 
   videocom.render_lines(str1, str2, str3);  
