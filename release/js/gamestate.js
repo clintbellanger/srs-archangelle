@@ -17,11 +17,11 @@ function gamestate_logic() {
 	  chopper_logic();
       chopper_logic_shoot();
       missile.logic();
-      fedora_logic();
+      fighter.logic();
 	  particles_logic();
 	  pickup.logic();
-      collide_dildo_fedora();
-      collide_fedora_archangelle();
+      collide_dildo_fighter();
+      collide_fighter_archangelle();
 	  collide_pickup_archangelle();
       videocom.logic();
 	  imageset_logic();
@@ -43,7 +43,7 @@ function gamestate_render() {
     case STATE_PLAY:	
       starfield_render();
       missile.render();
-      fedora_render();
+      fighter.render();
       chopper_render();
       particles_render();
 	  pickup.render();
@@ -53,7 +53,7 @@ function gamestate_render() {
       // HUD stuff, move to new location
       bitfont_render("Dilds " + chopper_dilds_per_shot() + "x", UI_MARGIN, UI_MARGIN, JUSTIFY_LEFT);
       // bitfont_render("Dilds Fired: " + missile.total, UI_MARGIN, UI_MARGIN, JUSTIFY_LEFT);
-      bitfont_render(fedora.destroyed + " Bens", VIEW_WIDTH - UI_MARGIN, UI_MARGIN, JUSTIFY_RIGHT);
+      bitfont_render(fighter.total_destroyed + " Bens", VIEW_WIDTH - UI_MARGIN, UI_MARGIN, JUSTIFY_RIGHT);
 
 	  break;
       

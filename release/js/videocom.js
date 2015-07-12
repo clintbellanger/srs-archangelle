@@ -192,9 +192,9 @@ videocom.render_friendly_message = function(message_id) {
   switch (message_id) {
   
     case 0:
-      str1 = "Welcome cadet! Pilot the"
-      str2 = "Brd to victory and let";
-      str3 = "loose the dilds of war!";
+      str1 = "Welcome cadet! Fire"
+      str2 = "your dilds for justice!";
+      str3 = "Ben all the shitlords!";
       break;
       
     case 1:
@@ -204,14 +204,9 @@ videocom.render_friendly_message = function(message_id) {
       break;
       
     case 2:
-      
-      total_enemies = fedora.destroyed + fedora.missed;
-
-      if (total_enemies === 0) accuracy = 100;
-      else accuracy = Math.floor((fedora.destroyed / total_enemies) * 100);
-      
+            
       str1 = "Cadet! Your accuracy is";
-      str2 = accuracy + "%!";
+      str2 = fighter.player_accuracy() + "%!";
       str3 = "Keep it up!";
       break;
       

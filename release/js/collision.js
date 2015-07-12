@@ -20,16 +20,16 @@ function overlap(x1, y1, w1, h1, x2, y2, w2, h2) {
 
 }
 
-function collide_dildo_fedora() {
+function collide_dildo_fighter() {
   var contact = false;
 
-  for (var i = fedora.list.length -1; i >= 0; i--) {
+  for (var i = fighter.list.length -1; i >= 0; i--) {
     for (var j = missile.list.length -1; j >= 0; j--) {
       contact = overlap (
-        fedora.list[i].x - FEDORA_HALF,
-        fedora.list[i].y - FEDORA_HALF,
-        FEDORA_SIZE,
-        FEDORA_SIZE,
+        fighter.list[i].x - fighter.area.width_half,
+        fighter.list[i].y - fighter.area.height_half,
+        fighter.area.width,
+        fighter.area.height,
         missile.list[j].x - MISSILE_WIDTH_HALF,
         missile.list[j].y - MISSILE_HEIGHT_HALF,
         MISSILE_WIDTH,
@@ -47,15 +47,15 @@ function collide_dildo_fedora() {
         
         missile.remove(j);
                 
-        // harm fedora and check for ben
-        fedora.list[i].hp--;
-        if (fedora.list[i].hp <= 0) {
+        // harm fighter and check for ben
+        fighter.list[i].hp--;
+        if (fighter.list[i].hp <= 0) {
         
           // ben explosion animation
           particles_add(
             PARTICLE_BEN,
-            fedora.list[i].x,
-            fedora.list[i].y
+            fighter.list[i].x,
+            fighter.list[i].y
           );
           
           waves.mob_count--;
@@ -64,12 +64,12 @@ function collide_dildo_fedora() {
           if (waves.mob_count == 0 && waves.complete) {
             
             // do reward
-            pickup.add_random(fedora.list[i].x, fedora.list[i].y);
+            pickup.add_random(fighter.list[i].x, fighter.list[i].y);
           
           }
                   
-          fedora_remove(i);
-          fedora.destroyed++;
+          fighter.remove(i);
+          fighter.total_destroyed++;
 
         }
 
@@ -81,15 +81,15 @@ function collide_dildo_fedora() {
 
 }
 
-function collide_fedora_archangelle() {
+function collide_fighter_archangelle() {
   var contact = false;
 
-  for (var i = fedora.list.length -1; i >= 0; i--) {
+  for (var i = fighter.list.length -1; i >= 0; i--) {
      contact = overlap (
-        fedora.list[i].x - FEDORA_HALF,
-        fedora.list[i].y - FEDORA_HALF,
-        FEDORA_SIZE,
-        FEDORA_SIZE,
+        fighter.list[i].x - fighter.area.width_half,
+        fighter.list[i].y - fighter.area.height_half,
+        fighter.area.width,
+        fighter.area.height,
         chopper.x - CHOPPER_COLLISION_WIDTH/2,
         chopper.y - CHOPPER_COLLISION_HEIGHT/2,
         CHOPPER_COLLISION_WIDTH,
@@ -101,12 +101,12 @@ function collide_fedora_archangelle() {
          // ben explosion animation
         particles_add(
           PARTICLE_BEN,
-          fedora.list[i].x,
-          fedora.list[i].y
+          fighter.list[i].x,
+          fighter.list[i].y
         );
           
-        fedora_remove(i);
-        fedora.destroyed++;
+        fighter.remove(i);
+        fighter.total_destroyed++;
 
         chopper_powerdown();
         

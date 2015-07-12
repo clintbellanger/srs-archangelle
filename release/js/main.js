@@ -63,7 +63,7 @@ function init() {
   chopper_init();
   missile.init();
   starfield_init();
-  fedora_init();
+  fighter.init();
   videocom.init();
   title.init();
 

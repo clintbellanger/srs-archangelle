@@ -25,7 +25,7 @@ function waves_logic() {
      waves.counter = 0;
 
      // choose wave type
-     waves.type = Math.floor(Math.random() * 5);
+     waves.type = Math.floor(Math.random() * 7);
      
      // DEBUG MODE
      if (waves.TEST_QUOTES) waves.type = 0;
@@ -40,7 +40,8 @@ function waves_logic() {
     case 2: waves_logic_b(); break;
     case 3: waves_logic_c(); break;
     case 4: waves_logic_d(); break;
-    
+    case 5: waves_trillby_v(); break;
+    case 6: waves_trillby_a(); break;
   }
 
 }
@@ -49,13 +50,13 @@ function waves_logic_a() {
   if (waves.counter < 150) {
     if (waves.counter % 25 == 0) {
       waves.mob_count++;
-      fedora_add(32, -32, FEDORA_STRAIGHT);
+      fighter.add(32, -fighter.area.height_half, fighter.patterns.TRILLBY_STRAIGHT);
     }
   }
   else if (waves.counter >= 150 && waves.counter < 300) {
     if (waves.counter % 25== 0) {
       waves.mob_count++;
-      fedora_add(VIEW_WIDTH-32, -32, FEDORA_STRAIGHT);
+      fighter.add(VIEW_WIDTH-32, -fighter.area.height_half, fighter.patterns.TRILLBY_STRAIGHT);
       if (waves.counter == 275) waves.complete = true;
     }
   }
@@ -65,13 +66,13 @@ function waves_logic_b() {
   if (waves.counter < 150) {
     if (waves.counter % 25 == 0) {
       waves.mob_count++;
-      fedora_add(VIEW_WIDTH-32, -32, FEDORA_STRAIGHT);
+      fighter.add(VIEW_WIDTH-32, -fighter.area.height_half, fighter.patterns.TRILLBY_STRAIGHT);
     }
   }
   else if (waves.counter >= 150 && waves.counter < 300) {
     if (waves.counter % 25 == 0) {
       waves.mob_count++;
-      fedora_add(32, -32, FEDORA_STRAIGHT);
+      fighter.add(32, -fighter.area.height_half, fighter.patterns.TRILLBY_STRAIGHT);
       if (waves.counter == 275) waves.complete = true;
     }
   }
@@ -81,7 +82,7 @@ function waves_logic_c() {
   if (waves.counter > 60 && waves.counter < 240) {
     if (waves.counter % 20 == 0) {
       waves.mob_count++;
-      fedora_add(waves.counter, -32, FEDORA_STRAIGHT);
+      fighter.add(waves.counter, -fighter.area.height_half, fighter.patterns.TRILLBY_STRAIGHT);
       if (waves.counter == 220) waves.complete = true;
     }
   }
@@ -91,12 +92,36 @@ function waves_logic_d() {
   if (waves.counter > 60 && waves.counter < 240) {
     if (waves.counter % 20 == 0) {
       waves.mob_count++;
-      fedora_add(VIEW_WIDTH - waves.counter, -32, FEDORA_STRAIGHT);
+      fighter.add(VIEW_WIDTH - waves.counter, -fighter.area.height_half, fighter.patterns.TRILLBY_STRAIGHT);
       if (waves.counter == 220) waves.complete = true;
     }
   }
 }
 
+function waves_trillby_v() {
+  if (waves.counter >= 50 && waves.counter <= 125) {
+     if (waves.counter % 25 === 0) {
+       waves.mob_count += 2;
+       fighter.add(VIEW_WIDTH/2 - fighter.area.width, -fighter.area.height_half, fighter.patterns.TRILLBY_LEFT);
+       fighter.add(VIEW_WIDTH/2 + fighter.area.width, -fighter.area.height_half, fighter.patterns.TRILLBY_RIGHT);
+       if (waves.counter == 180) waves.complete = true;
+     }
+  }
+  if (waves.counter == 80) fighter.add(160, -fighter.area.height_half, fighter.patterns.BEARD_LEFT);
+}
+
+function waves_trillby_a() {
+  if (waves.counter >= 50 && waves.counter <= 125) {
+     if (waves.counter % 25 === 0) {
+       waves.mob_count += 2;
+       fighter.add(fighter.area.width, -fighter.area.height_half, fighter.patterns.TRILLBY_RIGHT);
+       fighter.add(VIEW_WIDTH - fighter.area.width, -fighter.area.height_half, fighter.patterns.TRILLBY_LEFT);
+       if (waves.counter == 180) waves.complete = true;
+     }
+  }
+  if (waves.counter == 80) fighter.add(80, -fighter.area.height_half, fighter.patterns.BEARD_RIGHT);
+}
+   
 // during this wave there are no new enemies
 // instead there is a video communication break
 function waves_logic_videocom() {
