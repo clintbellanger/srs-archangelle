@@ -1,4 +1,6 @@
 quotes = [
+  ["This is why we need a", "men's rights movement,", "to counteract this BS."],
+  ["If nobody else is going to", "stand up to feminists,", "who will?"],
   ["But what about the men?", "", ""],
   ["You can't cut back on our", "first amendment rights!", "you'll regret this!"],
   ["I do not fear getting", "banned from here.", "I consider it a blessing."],     
@@ -71,5 +73,5 @@ quotes = [
   ["It just so happens that", "certain races have more", "subcultures that I hate."],
   ["There are thousands of", "pedophiles on Reddit. Most", "of us are good people."],
   ["Lying about rape should", "be a greater offense", "than rape."],
-  ["Honestly, this just kinda", "shows why racism is", "still a thing."]
+  ["Honestly, this just kinda", "shows why racism is", "still a thing."]  
 ];

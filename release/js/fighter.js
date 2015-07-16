@@ -239,11 +239,11 @@ fighter.behavior_beard_left = function(beard) {
   else if (beard.ticker < 50) {
     beard.ticker++;
     beard.x--;
-    beard.tilt = fighter.tilts.LEFT;    
+    beard.tilt = fighter.tilts.HARD_LEFT;
   }
   else {
     beard.x--;;
-    beard.tilt = fighter.tilts.HARD_LEFT;
+    beard.tilt = fighter.tilts.LEFT;
   }
   
 }
@@ -260,11 +260,11 @@ fighter.behavior_beard_right = function(beard) {
   else if (beard.ticker < 50) {
     beard.ticker++;
     beard.x++;
-    beard.tilt = fighter.tilts.RIGHT;    
+    beard.tilt = fighter.tilts.HARD_RIGHT;    
   }
   else {
     beard.x++;
-    beard.tilt = fighter.tilts.HARD_RIGHT;
+    beard.tilt = fighter.tilts.RIGHT;
   }
   
 }
