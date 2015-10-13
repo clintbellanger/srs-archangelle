@@ -73,5 +73,6 @@ quotes = [
   ["It just so happens that", "certain races have more", "subcultures that I hate."],
   ["There are thousands of", "pedophiles on Reddit. Most", "of us are good people."],
   ["Lying about rape should", "be a greater offense", "than rape."],
-  ["Honestly, this just kinda", "shows why racism is", "still a thing."]  
+  ["Honestly, this just kinda", "shows why racism is", "still a thing."],
+  ["You are supporting", "some of the vilest", "imaginable extremism."]  
 ];
